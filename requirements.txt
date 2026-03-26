@@ -1,1 +1,4 @@
-
+flask
+spotipy
+google-generativeai
+python-dotenv

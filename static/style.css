@@ -1,1 +1,84 @@
+/* static/style.css */
 
+:root {
+    --spotify-green: #1DB954;
+    --spotify-black: #191414;
+    --spotify-light-black: #212121;
+    --spotify-white: #FFFFFF;
+    --spotify-gray: #B3B3B3;
+}
+
+body {
+    background-color: var(--spotify-black);
+    color: var(--spotify-white);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: var(--spotify-light-black);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 800;
+}
+
+p {
+    color: var(--spotify-gray);
+    margin-bottom: 1.5rem;
+}
+
+/* Input Styling */
+input[type="text"] {
+    width: 80%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid var(--spotify-gray);
+    background-color: #333;
+    color: white;
+    margin-bottom: 1.5rem;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--spotify-green);
+}
+
+/* Button Styling */
+.btn {
+    background-color: var(--spotify-green);
+    color: black;
+    padding: 14px 32px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    background-color: #1ed760;
+}
+
+/* The Success Link */
+.playlist-link {
+    color: var(--spotify-green);
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+}

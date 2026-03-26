@@ -1,1 +1,26 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCheck AI | Gemini + Spotify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>VibeCheck AI</h1>
+        
+        {% if not logged_in %}
+            <p>Connect your Spotify to let Gemini build your perfect playlist.</p>
+            <a href="{{ auth_url }}" class="btn">Log in with Spotify</a>
+        {% else %}
+            <p>What's the vibe today?</p>
+            <form action="/generate" method="POST">
+                <input type="text" name="vibe" placeholder="e.g. 80s synthwave for a rainy drive" required>
+                <br>
+                <button type="submit" class="btn">Generate Playlist</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
