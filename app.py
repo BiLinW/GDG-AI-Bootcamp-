@@ -1,6 +1,10 @@
 import os
+from urllib import response
+from click import prompt
+from click import prompt
 from flask import Flask, request, redirect, session, render_template
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
@@ -11,8 +15,8 @@ app = Flask(__name__)
 app.secret_key =os.getenv("FLASK_SECRET_KEY")
 
 # Configure Gemini
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-model = genai.GenerativeModel('gemini-3-flash-preview')
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+#model = genai.GenerativeModel('gemini-3-flash-preview')
 
 # 2. Spotify OAuth Helper
 def get_spotify_oauth():
@@ -46,9 +50,13 @@ def generate():
     vibe = request.form.get('vibe')
     
     # --- Step A: Ask Gemini for songs ---
-    prompt = f"Act as a professional DJ. Create a list of 10 songs based on this vibe: {vibe}. Return only the list in the format: Artist - Song Title. No intro or outro text."
-    ai_response = model.generate_content(prompt)
-    song_lines = ai_response.text.strip().split('\n')
+    response = client.models.generate_content(
+    model='gemini-2.5-flash', contents=f'Act as a professional DJ. Create a list of 10 songs based on this vibe: {vibe}. Return only the list in the format: Artist - Song Title. No intro or outro text.'
+    )
+    #print(response.text)
+    
+    #ai_response = model.generate_content(prompt)
+    song_lines = response.text.strip().split('\n')
 
     # --- Step B: Initialize Spotify ---
     auth_manager = get_spotify_oauth()
