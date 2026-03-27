@@ -72,7 +72,7 @@ def generate():
             track_uris.append(tracks[0]['uri'])
 
     # --- Step D: Create Playlist & Add Tracks ---
-    playlist = sp.user_playlist_create(user_id, f"Gemini Vibe: {vibe[:20]}", public=True)
+    playlist = sp.current_user_playlist_create(name ="GDGplaylist", public=True, collaborative=False, description='generated playlist')
     if track_uris:
         sp.playlist_add_items(playlist['id'], track_uris)
 
